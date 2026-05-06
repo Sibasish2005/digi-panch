@@ -67,7 +67,7 @@ export default function Navbar() {
 
         {/* Desktop Button */}
         <div className="hidden md:block">
-          <Button className="rounded-xl bg-blue-600 px-6 hover:bg-blue-700">
+          <Button className="rounded-xl bg-blue-600 px-6 hover:bg-blue-700 text-white">
             Get Started
           </Button>
         </div>
