@@ -3,19 +3,19 @@ import { DynaPuff, Supermercado_One, Inter } from "next/font/google";
 import "./globals.css";
 
 const dynaPuff = DynaPuff({
-  variable: "--font-dynapuff",
+  variable: "--font-next-dynapuff",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
 const supermercadoOne = Supermercado_One({
-  variable: "--font-supermercado",
+  variable: "--font-next-supermercado",
   subsets: ["latin"],
   weight: ["400"],
 });
 
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-next-inter",
   subsets: ["latin"],
 });
 
@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${dynaPuff.variable} ${supermercadoOne.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-dynapuff">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
