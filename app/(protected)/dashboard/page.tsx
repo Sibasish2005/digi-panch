@@ -4,11 +4,13 @@ import {
   PiggyBank, FolderOpen, FileDown, PlusCircle, ChevronRight,
   ArrowRight
 } from "lucide-react";
+import FloatingChatbotButton from "../chatbot/chatbot";
 
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 md:p-8 lg:p-10">
       <div className="mx-auto max-w-7xl">
+        <FloatingChatbotButton />
 
         {/* Header */}
         <div className="mb-8 flex flex-col gap-6 rounded-2xl bg-white p-6 shadow-sm border border-slate-200 md:flex-row md:items-center md:justify-between lg:p-8">

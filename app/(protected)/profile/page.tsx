@@ -4,12 +4,13 @@ import {
   FileText, CheckCircle, Bell, Shield, Settings,
   ChevronRight, BadgeCheck
 } from "lucide-react";
+import FloatingChatbotButton from "../chatbot/chatbot";
 
 export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-slate-50 p-4 sm:p-6 md:p-8 lg:p-10">
       <div className="mx-auto max-w-6xl">
-
+        <FloatingChatbotButton />
         {/* Header */}
         <div className="mb-8 flex flex-col items-start justify-between gap-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:flex-row md:items-center lg:p-8">
           
