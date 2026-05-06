@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="en"
       className={`${dynaPuff.variable} ${supermercadoOne.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">{children}</body>
+      <body className={`min-h-full flex flex-col ${dynaPuff.className}`}>{children}</body>
     </html>
   );
 }
