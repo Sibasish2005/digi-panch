@@ -159,8 +159,8 @@ export default function Navbar() {
 
               <Show when="signed-out">
                 <SignInButton mode="modal">
-                  <Button className="mt-2 w-full rounded-xl bg-blue-600 hover:bg-blue-700">
-                    Get Started
+                  <Button className="mt-2 w-full rounded-xl bg-blue-600 hover:bg-blue-700 text-white">
+                    Log-in
                   </Button>
                 </SignInButton>
               </Show>
