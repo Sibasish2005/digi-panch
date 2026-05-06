@@ -5,18 +5,18 @@ import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 
 import { motion, AnimatePresence } from "framer-motion";
+
+import { Show, SignInButton, UserButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-white/10 bg-white/80 backdrop-blur-xl">
-
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
-
         {/* Logo */}
         <Link href="/">
           <h1 className="cursor-pointer select-none text-3xl font-bold tracking-tight text-slate-900">
@@ -26,13 +26,20 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <ul className="hidden items-center gap-8 md:flex">
-
           <li>
             <Link
               href="/"
               className="text-slate-700 transition hover:text-blue-600"
             >
               Home
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard"
+              className="text-slate-700 transition hover:text-blue-600"
+            >
+              Dashboard
             </Link>
           </li>
 
@@ -62,14 +69,33 @@ export default function Navbar() {
               Contact
             </Link>
           </li>
-
         </ul>
 
-        {/* Desktop Button */}
+        {/* Desktop Auth */}
         <div className="hidden md:block">
-          <Button className="rounded-xl bg-blue-600 px-6 hover:bg-blue-700 text-white">
-            Get Started
-          </Button>
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <Button className="rounded-xl bg-blue-600 px-6 hover:bg-blue-700 text-white">
+                Get Started
+              </Button>
+            </SignInButton>
+          </Show>
+
+          <Show when="signed-in">
+            <div className="flex items-center gap-4">
+              <Link href="/profile">
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 rounded-xl"
+                >
+                  <User size={18} />
+                  Profile
+                </Button>
+              </Link>
+
+              <UserButton />
+            </div>
+          </Show>
         </div>
 
         {/* Mobile Menu Button */}
@@ -79,14 +105,11 @@ export default function Navbar() {
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-
         {isOpen && (
-
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -94,15 +117,20 @@ export default function Navbar() {
             transition={{ duration: 0.2 }}
             className="border-t border-slate-200 bg-white md:hidden"
           >
-
             <div className="flex flex-col gap-6 px-6 py-6">
-
               <Link
                 href="/"
                 className="text-slate-700 hover:text-blue-600"
                 onClick={() => setIsOpen(false)}
               >
                 Home
+              </Link>
+              <Link
+                href="/dashboard"
+                className="text-slate-700 hover:text-blue-600"
+                onClick={() => setIsOpen(false)}
+              >
+                Dashboard
               </Link>
 
               <Link
@@ -129,18 +157,32 @@ export default function Navbar() {
                 Contact
               </Link>
 
-              <Button className="mt-2 w-full rounded-xl bg-blue-600 hover:bg-blue-700">
-                Get Started
-              </Button>
+              <Show when="signed-out">
+                <SignInButton mode="modal">
+                  <Button className="mt-2 w-full rounded-xl bg-blue-600 hover:bg-blue-700">
+                    Get Started
+                  </Button>
+                </SignInButton>
+              </Show>
 
+              <Show when="signed-in">
+                <div className="mt-2 flex items-center gap-4 border-t border-slate-100 pt-6">
+                  <UserButton />
+                  <Link href="/profile" onClick={() => setIsOpen(false)} className="flex-1">
+                    <Button
+                      variant="outline"
+                      className="flex w-full items-center justify-center gap-2 rounded-xl"
+                    >
+                      <User size={18} />
+                      Profile
+                    </Button>
+                  </Link>
+                </div>
+              </Show>
             </div>
-
           </motion.div>
-
         )}
-
       </AnimatePresence>
-
     </nav>
   );
 }
