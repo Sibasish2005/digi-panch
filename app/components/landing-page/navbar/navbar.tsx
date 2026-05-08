@@ -93,7 +93,6 @@ export default function Navbar() {
                 </Button>
               </Link>
 
-              <UserButton />
             </div>
           </Show>
         </div>
@@ -167,7 +166,7 @@ export default function Navbar() {
 
               <Show when="signed-in">
                 <div className="mt-2 flex items-center gap-4 border-t border-slate-100 pt-6">
-                  <UserButton />
+                  
                   <Link href="/profile" onClick={() => setIsOpen(false)} className="flex-1">
                     <Button
                       variant="outline"
